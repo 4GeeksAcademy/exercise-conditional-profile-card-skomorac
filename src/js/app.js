@@ -1,3 +1,4 @@
+/*eslint-disable*/
 import "../style/index.css";
 
 /**
@@ -30,23 +31,25 @@ function render(variables = {}) {
   if (variables.includeCover == false) cover = "<div class='cover'></div>";
 
   let avatar = `<img src="${variables.avatarURL}" class="photo" />`;
-  let nameAndSurname = `<h1>${variables.name} ${variables.lastName}</h1>`;
-  let role = `<h2>${variables.role}</h2>`;
-  let location = `<h3>${variables.city}, ${variables.country}</h3>`;
+  let nameElmnt = variables.name === null ? "John" : variables.name;
+  let surnameElmnt = variables.lastName === null ? "Doe" : variables.lastName;
+  let roleElmnt = variables.role === null ? "Web Developer" : variables.role;
+  let cityElmnt = variables.city === null ? "Toronto" : variables.city;
+  let countryElmnt = variables.country === null ? "Canada" : variables.country;
   let socialMedia = `<ul class="${variables.socialMediaPosition}">
-  <li><a href="${variables.twitter}"><i class="fab fa-twitter"></i></a></li>
-  <li><a href="${variables.github}"><i class="fab fa-github"></i></a></li>
-  <li><a href="${variables.linkedin}"><i class="fab fa-linkedin"></i></a></li>
-  <li><a href="${variables.instagram}"><i class="fab fa-instagram"></i></a></li>
+  <li><a href="https://twitter.com/${variables.twitter}" target="_blank"><i class="fab fa-twitter"></i></a></li>
+  <li><a href="https://github.com/${variables.github}" target="_blank"><i class="fab fa-github"></i></a></li>
+  <li><a href="https://linkedin.com/${variables.linkedin}" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+  <li><a href="https://instagram.com/${variables.instagram}" target="_blank"><i class="fab fa-instagram"></i></a></li>
 </ul>`;
 
   // reset the website body with the new html output
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
             ${avatar}
-            ${nameAndSurname}
-            ${role}
-            ${location}
+            <h1>${nameElmnt} ${surnameElmnt}</h1>
+            <h2>${roleElmnt}</h2>
+            <h3>${cityElmnt}, ${countryElmnt}</h3>
             ${socialMedia}
         </div>
     `;
